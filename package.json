@@ -1,0 +1,23 @@
+{
+  "name": "create-h0-template-node",
+  "version": "0.0.1",
+  "description": "依据自定义的模板创建项目文件",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/44856/create-h0-template-node.git",
+    "directory": "packages/create-template"
+  },
+  "homepage": "https://github.com/44856/create-h0-template-node",
+  "engines": {
+    "node": ">=14"
+  },
+  "scripts": {
+    "transpile": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.1.3"
+  }
+}

@@ -1,8 +1,8 @@
+import * as os from "os";
 import * as path from "path";
 import * as fs from "fs-extra";
+import * as process from "process";
 import { green, yellow, red } from "chalk";
-import process from "process";
-import * as os from "os";
 import {AnyObj} from "../types";
 import {VALID_CONFIG_ITEM} from "./constants";
 
@@ -31,8 +31,13 @@ function readConfig(config_path:string,item?:string){
         console.log(`Please Init Config By ${green('Setting')} Or ${green('Run One Time')}`)
         process.exit(1);
     }
-    const lines = fs.readFileSync(config_path, 'utf-8');
-    return lines;
+    if(item){
+        const obj =readFileToObj(config_path);
+        console.log(obj[item]);
+    }else {
+        const lines = fs.readFileSync(config_path, 'utf-8');
+        console.log(lines)
+    }
 }
 
 async function injectConfig(config_path:string,item:string,content:string){
@@ -64,8 +69,7 @@ export async function runConfig(base_path:string,item?:string,content?:string){
         return false;
     }
     if(typeof content==='undefined'){
-        res = readConfig(config_path,item);
-        console.log(res);
+        readConfig(config_path,item);
     }else if(item&&content){
         if(content.includes('=')){
             console.log('Error format config env！')

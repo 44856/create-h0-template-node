@@ -1,12 +1,13 @@
+import * as fs from "fs-extra";
+import * as path from "path";
+import * as semver from "semver";
 import * as process from "process";
-import fs from "fs-extra";
 import {Command} from "commander";
-import {cyan, green, red, yellow} from "chalk";
-import packageJson from './package.json';
+import {cyan, green, yellow} from "chalk";
 import {AnyObj, COMMAND_TYPE} from "./types";
 import {checkThatNpmCanReadCwd, isSafeToCreateProjectIn, readFileToObj, runConfig} from "./utils";
-import path from "path";
-import semver from "semver/preload";
+
+const packageJson = require("./package.json");
 
 let base_path = path.resolve(__dirname);
 
@@ -40,8 +41,8 @@ export function init(){
 
 function checkArgs(program:Command,args:Array<string>,options:AnyObj){
     const [first_args,second_args,third_args] = args;
-    const [first_args_type,second_args_type,third_args_type]
-        = [typeof first_args,typeof second_args,typeof third_args];
+    const [first_args_type,second_args_type]
+        = [typeof first_args,typeof second_args];
     if (first_args_type === 'undefined') {
         console.error(' Please specify the app name:');
         console.log(
@@ -118,6 +119,7 @@ function injectTemplate(appName: string, template: string,options:AnyObj){
     run(root,appName,appPath,template,mix_options);
 }
 
+// TODO 插入路由
 function injectRouteConfig(path:string,route:string) {
 
 }

@@ -14,8 +14,7 @@
   "files": [
     "index.js",
     "create-template.js",
-    "utils/*.js",
-    "template"
+    "utils/*.js"
   ],
   "scripts": {
     "start": "ts-node index.ts pageTo listPage",

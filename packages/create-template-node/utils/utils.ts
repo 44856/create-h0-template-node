@@ -1,6 +1,6 @@
-import * as process from "process";
 import * as fs from "fs-extra";
 import * as spawn from "cross-spawn";
+import * as process from "process";
 import {bold, cyan, red} from "chalk";
 
 export function getNodeVersion() {

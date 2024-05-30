@@ -1,6 +1,6 @@
 {
   "name": "create-template-h-node",
-  "version": "0.0.1",
+  "version": "0.0.2-beta",
   "description": "依据模板创建项目文件",
   "repository": {
     "type": "git",

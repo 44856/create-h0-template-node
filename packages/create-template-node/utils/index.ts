@@ -1,7 +1,7 @@
-import { getNodeVersion,checkThatNpmCanReadCwd,isSafeToCreateProjectIn } from './utils';
+import { getNodeVersion,checkThatNpmCanReadCwd,isSafeToCreateProjectIn,readTxtToJsonLines } from './utils';
 import { runConfig,readFileToObj } from './injectConfig';
 
 export {
-    getNodeVersion,checkThatNpmCanReadCwd,isSafeToCreateProjectIn,
+    getNodeVersion,checkThatNpmCanReadCwd,isSafeToCreateProjectIn,readTxtToJsonLines,
     runConfig,readFileToObj,
 }

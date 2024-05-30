@@ -1,14 +1,14 @@
 # 使用方法
 
 ```shell
-npm i -g create-h0-template
-create-h0-template <app-name> <template-name> [options]
+npm i -g create-template-h-node
+create-template-h-node <app-name> <template-name> [options]
 ```
 
 或者
 
 ```shell
-npx create-h0-template <app-name> <template-name> [options]
+npx create-template-h-node <app-name> <template-name> [options]
 ```
 
 其中app-name指代页面文件夹名称，template-name则指代模板名称
@@ -21,19 +21,19 @@ npx create-h0-template <app-name> <template-name> [options]
 # 配置默认配置项
 
 ```shell
-create-h0-template config <config-item> <config-content>
+create-template-h-node config <config-item> <config-content>
 ```
 
 ## 获取配置项信息
 
 ```shell
-create-h0-template config <config-item>
+create-template-h-node config <config-item>
 ```
 
 或
 
 ```shell
-create-h0-template config
+create-template-h-node config
 ```
 
 # 注意事项

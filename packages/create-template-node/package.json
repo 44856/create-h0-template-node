@@ -1,5 +1,5 @@
 {
-  "name": "create-template-node",
+  "name": "create-template-h-node",
   "version": "0.0.1",
   "description": "依据模板创建项目文件",
   "repository": {
@@ -14,7 +14,8 @@
   "files": [
     "index.js",
     "create-template.js",
-    "utils/*.js"
+    "utils/*.js",
+    "types.js"
   ],
   "scripts": {
     "start": "ts-node index.ts pageTo listPage",
@@ -41,7 +42,7 @@
     "semver": "^7.5.1"
   },
   "bin": {
-    "create-template-node": "./index.js"
+    "create-template-h-node": "./index.js"
   },
   "keywords": [],
   "author": "",

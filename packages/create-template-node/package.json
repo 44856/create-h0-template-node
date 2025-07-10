@@ -1,6 +1,6 @@
 {
   "name": "create-template-h-node",
-  "version": "0.0.2-beta",
+  "version": "0.0.4-beta",
   "description": "依据模板创建项目文件",
   "repository": {
     "type": "git",
@@ -25,16 +25,23 @@
     "version": "ts-node index.ts --version",
     "help": "ts-node index.ts --help",
     "transpile": "tsc index.ts",
+    "test": "node index.js pageTo",
     "runJs": "node index.js test --verbose true --template ts",
     "runEsJs": "node dist/index.js test --help"
   },
   "devDependencies": {
+    "@types/babel__generator": "^7.6.4",
+    "@types/babel__traverse": "^7.20.1",
     "@types/cross-spawn": "^6.0.2",
     "@types/fs-extra": "^11.0.1",
     "@types/node": "^20.2.4",
     "@types/semver": "^7.5.0"
   },
   "dependencies": {
+    "@babel/generator": "^7.22.5",
+    "@babel/parser": "^7.22.5",
+    "@babel/traverse": "^7.22.5",
+    "@babel/types": "^7.22.5",
     "chalk": "^4.1.2",
     "commander": "^10.0.1",
     "cross-spawn": "^7.0.3",

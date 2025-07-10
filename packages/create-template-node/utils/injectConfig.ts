@@ -5,14 +5,13 @@ import * as process from "process";
 import { green, yellow, red } from "chalk";
 import {AnyObj} from "../types";
 import {VALID_CONFIG_ITEM} from "./constants";
+import {readTxtToJsonLines} from "./utils";
 
 export function readFileToObj(path:string){
     const obj:AnyObj = Object.create({});
     try {
         const lines = fs.readFileSync(path, 'utf-8');
-        const real_lines = lines.split(os.EOL)
-            .map((str)=>str.trim())
-        console.log(real_lines)
+        const real_lines = readTxtToJsonLines(lines);
         real_lines.forEach((line)=>{
             const item_map = line.split('=');
             if(item_map.length===2){

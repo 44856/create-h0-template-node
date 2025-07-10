@@ -1,7 +1,17 @@
+import * as os from "os";
 import * as fs from "fs-extra";
 import * as spawn from "cross-spawn";
 import * as process from "process";
 import {bold, cyan, red} from "chalk";
+import {
+    objectExpression,
+    objectProperty,
+    stringLiteral,
+    identifier,
+    numericLiteral,
+    booleanLiteral,
+    arrayExpression
+} from "@babel/types";
 
 export function getNodeVersion() {
     const currentNodeVersion = process.versions.node;
@@ -15,7 +25,7 @@ export function isSafeToCreateProjectIn(root: string) {
     if (conflict) {
         console.log(`${root} has old files: ${conflictFiles.join(', ')}`);
         console.log(
-            'Either try using a new directory name, or remove the files listed above.'
+            'Either try using a new directory name, or remove the files listed above.\n'
         );
         return false;
     }
@@ -69,4 +79,39 @@ export function checkThatNpmCanReadCwd() {
         );
     }
     return false;
+}
+
+// TODO 目前未对undefined,null,object键值类型处理
+// babel注入对象
+export function injectObj(obj:{[k:string]:any}){
+    const objExpr:any[] = [];
+    const getExpr = (k,value)=>{
+        if(typeof value === 'string'){
+            return objectProperty(identifier(k),stringLiteral(value));
+        }else if(typeof value==='number'){
+            return objectProperty(identifier(k),numericLiteral(value));
+        }else if(typeof value==='boolean'){
+            return objectProperty(identifier(k),booleanLiteral(value));
+        }else if(Array.isArray(value)){
+            const arrayValue:any[] = value.map((item)=>{
+                const newObj:any[] = [];
+                for(const key in item){
+                    const v = (item as any)[key];
+                    newObj.push(getExpr(key,v));
+                }
+                return objectExpression(newObj);
+            });
+            return objectProperty(identifier(k),arrayExpression(arrayValue));
+        }
+    };
+    for(const k in obj){
+        const value = (obj as any)[k];
+        objExpr.push(getExpr(k,value));
+    }
+    return objectExpression(objExpr);
+}
+
+export function readTxtToJsonLines(lines:string){
+    return lines.split(os.EOL)
+        .map((str)=>str.trim());
 }

@@ -24,6 +24,13 @@ npx create-template-h-node <app-name> <template-name> [options]
 create-template-h-node config <config-item> <config-content>
 ```
 
+其中 <config-item> 可选值为 dir或route,分别指代模板目录以及路由所在目录
+比如
+```shell
+create-template-h-node config dir /dev/sda1/template
+```
+便是将模板路径设置为/dev/sda1/template,执行主命令行便会默认从该路径搜索模板文件
+
 ## 获取配置项信息
 
 ```shell

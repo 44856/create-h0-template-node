@@ -15,16 +15,24 @@ npx create-template-h-node <app-name> <template-name> [options]
 
 ## 可选项
 
-- --template-version <string> 设置模板版本（目前版本未区分）
 - -cli,--cli-version <string> 设置H0架构版本,目前版本有hzeroJs、hzeroCli,默认为hzeroJs
+- --dir 设置读取模板的路径，不按默认配置中的路径检索
+- --route 设置读取路由模板的路径，不按默认配置中的路径检索
+- --route-prefix 设置路由模板的前缀，一般为模块的缩写，如hofm
 
 # 配置默认配置项
+
+目前支持的配置信息为:
+
+- dir 模板目录
+- route 路由模板目录
+- page_dir 页面功能相对路径，如 src/pages
 
 ```shell
 create-template-h-node config <config-item> <config-content>
 ```
 
-其中 <config-item> 可选值为 dir或route,分别指代模板目录以及路由所在目录
+其中 <config-item> 可选值为 dir或route等,分别指代模板目录以及路由所在目录
 比如
 ```shell
 create-template-h-node config dir /dev/sda1/template

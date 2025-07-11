@@ -12,7 +12,8 @@
     "node": ">=14"
   },
   "scripts": {
-    "transpile": "tsc"
+    "transpile": "tsc",
+    "test": "node packages/create-template-node/index.js pageTo test"
   },
   "keywords": [],
   "author": "",

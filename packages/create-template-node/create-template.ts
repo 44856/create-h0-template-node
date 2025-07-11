@@ -160,7 +160,25 @@ async function injectBySelectTemplate(appName: string, options: AnyObj) {
   }
 }
 
-function injectTemplate(appName: string, template: string, options: AnyObj) {
+async function injectPacakagesBySelect(pathName:string) {
+  const dirList = fs.readdirSync(pathName,{withFileTypes:true});
+  try {
+    const selected:any = await enquirer.prompt([
+      {
+        type: "select",
+        name: "package",
+        message: "Please select package: ",
+        choices: dirList.filter((item)=>item.isDirectory()).map((item) => ({ name:item.name })),
+      },
+    ]);
+    return selected.package;
+  } catch (err) {
+    console.error("交互选择取消或出错，命令终止");
+    process.exit(1);
+  }
+}
+
+async function injectTemplate(appName: string, template: string, options: AnyObj) {
   const unsupportedNodeVersion = !semver.satisfies(
     semver.coerce(process.version) || process.version,
     ">=14"
@@ -188,16 +206,25 @@ function injectTemplate(appName: string, template: string, options: AnyObj) {
     ...config,
     ...options,
   };
-
+  if (is_debug) {
+    console.log(`  After mix: \n`);
+    console.log(`\n    ${JSON.stringify(mix_options)}\n`);
+  }
   const originalDirectory = process.cwd();
   const root = path.resolve(originalDirectory);
 
   const pageDir = mix_options["page_dir"] || "src/pages";
-  const appPath = path.resolve(root, `${pageDir}/${appName}`);
+  let appPath = path.resolve(root, `${pageDir}/${appName}`);
   if (!fs.existsSync(pageDir)) {
     console.log(` Now pwd run under ${green(root)}\n`);
-    console.error(" The root directory structure is not right!\n");
-    process.exit(1);
+    const packagesPath = path.resolve(root,'packages');
+    if(!fs.existsSync(packagesPath)){
+      console.error(" The root directory structure is not right!\n");
+      process.exit(1);
+    }else{
+      const packageName = await injectPacakagesBySelect(packagesPath);
+      appPath =  path.resolve(root, `packages/${packageName}/${pageDir}/${appName}`);
+    }
   }
   // 确保文件夹存在
   fs.ensureDirSync(appPath);

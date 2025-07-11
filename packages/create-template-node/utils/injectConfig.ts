@@ -9,6 +9,10 @@ import {readTxtToJsonLines} from "./utils";
 
 export function readFileToObj(path:string){
     const obj:AnyObj = Object.create({});
+    const exitEnv = fs.existsSync(path);
+    if(!exitEnv){
+        return obj;
+    }
     try {
         const lines = fs.readFileSync(path, 'utf-8');
         const real_lines = readTxtToJsonLines(lines);

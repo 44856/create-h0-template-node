@@ -290,7 +290,7 @@ function processInjectRouteConfig(
   return generator(ast, {}, origin_route_code);
 }
 
-// TODO 插入路由
+// 插入路由
 function injectRouteConfig(path: string, route_code: string, version: string) {
   try {
     const code = processInjectRouteConfig(path, route_code, version).code;
@@ -299,6 +299,11 @@ function injectRouteConfig(path: string, route_code: string, version: string) {
     console.error(e);
     process.exit(1);
   }
+}
+
+// TODO 自动注入配置信息对应的数据
+function injectTemplateConfig(templatePath:string,injectConfigPath:string){
+  
 }
 
 function run(

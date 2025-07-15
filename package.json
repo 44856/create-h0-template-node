@@ -12,7 +12,7 @@
     "node": ">=14"
   },
   "scripts": {
-    "transpile": "tsc",
+    "transpile": "tsc packages/create-template-node/index.ts",
     "test": "node packages/create-template-node/index.js pageTo test"
   },
   "keywords": [],

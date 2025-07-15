@@ -15,7 +15,6 @@ npx create-template-h-node <app-name> <template-name> [options]
 
 ## 可选项
 
-- -cli,--cli-version <string> 设置H0架构版本,目前版本有hzeroJs、hzeroCli,默认为hzeroJs
 - --dir 设置读取模板的路径，不按默认配置中的路径检索
 - --route 设置读取路由模板的路径，不按默认配置中的路径检索
 - --route-prefix 设置路由模板的前缀，一般为模块的缩写，如hofm
@@ -39,6 +38,13 @@ create-template-h-node config dir /dev/sda1/template
 ```
 便是将模板路径设置为/dev/sda1/template,执行主命令行便会默认从该路径搜索模板文件
 
+### 示例
+```shell
+dir = /dev/sda1/template
+route = /dev/sda1/route
+```
+
+
 ## 获取配置项信息
 
 ```shell
@@ -50,6 +56,30 @@ create-template-h-node config <config-item>
 ```shell
 create-template-h-node config
 ```
+
+# 模板配置信息 (将来实现自动注入配置需要的配置信息，现阶段不需要考虑)
+
+## 初始化模板配置
+
+```shell
+create-template-h-node config template <template-name>
+```
+
+### 示例
+```shell
+configs = [config1,config2]; # 设置配置数目
+
+config1:  # 设置对应配置的属性
+# 文件路径限定为相对路径
+page = ./index.ts; # 设置主文件路径
+stores = ./stores/listDs.ts; # 设置对应的数据源路径
+services = ./services.ts; # 设置接口调用方法的文件路径
+
+config2:
+... # 同上
+
+```
+
 
 # 注意事项
 

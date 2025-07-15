@@ -2,12 +2,13 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "esnext",
-    "outDir": "./lib",
     "lib": [
       "dom",
       "dom.iterable",
       "esnext"
     ],
+    "sourceMap": false, 
+    "removeComments": true,
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -27,9 +28,6 @@
       "esModuleInterop": true
     }
   },
-  "include": [
-    "packages/**/*.ts"
-  ],
   "exclude": [
     "node_modules"
   ]

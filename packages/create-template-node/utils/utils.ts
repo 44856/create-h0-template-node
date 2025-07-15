@@ -85,7 +85,7 @@ export function checkThatNpmCanReadCwd() {
 // babel注入对象
 export function injectObj(obj:{[k:string]:any}){
     const objExpr:any[] = [];
-    const getExpr = (k,value)=>{
+    const getExpr = (k:any,value:any)=>{
         if(typeof value === 'string'){
             return objectProperty(identifier(k),stringLiteral(value));
         }else if(typeof value==='number'){

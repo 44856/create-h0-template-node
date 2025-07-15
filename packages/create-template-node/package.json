@@ -1,6 +1,6 @@
 {
   "name": "create-template-h-node",
-  "version": "0.0.5-beta",
+  "version": "0.0.9-beta",
   "description": "依据模板创建项目文件",
   "repository": {
     "type": "git",
@@ -12,10 +12,8 @@
     "node": ">=14"
   },
   "files": [
-    "index.js",
-    "create-template.js",
-    "utils/*.js",
-    "types.js"
+    "*.js",
+    "**/*.js"
   ],
   "scripts": {
     "start": "ts-node index.ts pageTo listPage",
@@ -24,7 +22,7 @@
     "config --dir": "ts-node index.ts pageTo listPage --dir",
     "version": "ts-node index.ts --version",
     "help": "ts-node index.ts --help",
-    "transpile": "tsc index.ts",
+    "transpile": "tsc index.ts --removeComments true",
     "test": "node index.js pageTo",
     "runJs": "node index.js test --verbose true --template ts",
     "runEsJs": "node dist/index.js test --help"
